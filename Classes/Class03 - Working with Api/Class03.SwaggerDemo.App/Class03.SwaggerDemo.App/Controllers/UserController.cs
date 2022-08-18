@@ -32,12 +32,12 @@ namespace Class03.SwaggerDemo.App.Controllers
             return Ok(_users.Select(x => new UserDto { UserId = x.Id, FullName = x.Name }));
         }
 
-        [HttpGet("filter")]
+        [HttpPost("filter")]
         [ProducesResponseType(typeof(int), 200)]
         [ProducesResponseType(typeof(int), 404)]
         [ProducesResponseType(typeof(int), 400)]
         [ProducesResponseType(typeof(int), 100)]
-        public ActionResult<IEnumerable<UserDto>> GetFilteredUsers([FromQuery] SearchInput input)
+        public ActionResult<IEnumerable<UserDto>> GetFilteredUsers([FromBody] SearchInput input)
         {
             return Ok(_users.Select(x => new UserDto { UserId = x.Id, FullName = x.Name }));
         }
