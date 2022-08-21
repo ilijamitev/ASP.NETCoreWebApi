@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.WebApi", "MovieApp.WebApi\MovieApp.WebApi.csproj", "{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.DataAccess", "MovieApp.DataAccess\MovieApp.DataAccess.csproj", "{A1F224FA-713A-429D-A881-F0FE4A979F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.ServiceModels", "MovieApp.ServiceModels\MovieApp.ServiceModels.csproj", "{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Services", "MovieApp.Services\MovieApp.Services.csproj", "{383E0DB8-E938-44AE-B50A-B0A732C1929A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Helpers", "MovieApp.Helpers\MovieApp.Helpers.csproj", "{0F434A10-6820-4E02-B4A6-397CC8C6F557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Domain", "MovieApp.Domain\MovieApp.Domain.csproj", "{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Mappers", "MovieApp.Mappers\MovieApp.Mappers.csproj", "{EBB755E6-3921-4092-9A68-6DE5E79481E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F224FA-713A-429D-A881-F0FE4A979F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F224FA-713A-429D-A881-F0FE4A979F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F224FA-713A-429D-A881-F0FE4A979F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F224FA-713A-429D-A881-F0FE4A979F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{383E0DB8-E938-44AE-B50A-B0A732C1929A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383E0DB8-E938-44AE-B50A-B0A732C1929A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383E0DB8-E938-44AE-B50A-B0A732C1929A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383E0DB8-E938-44AE-B50A-B0A732C1929A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F434A10-6820-4E02-B4A6-397CC8C6F557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F434A10-6820-4E02-B4A6-397CC8C6F557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F434A10-6820-4E02-B4A6-397CC8C6F557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F434A10-6820-4E02-B4A6-397CC8C6F557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBB755E6-3921-4092-9A68-6DE5E79481E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB755E6-3921-4092-9A68-6DE5E79481E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB755E6-3921-4092-9A68-6DE5E79481E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB755E6-3921-4092-9A68-6DE5E79481E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFAA4C15-4412-4F02-8363-13D683EA644B}
+	EndGlobalSection
+EndGlobal
