@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MovieApp.DataAccess.Repositories.Interfaces;
-using MovieApp.Domain.Enums;
 using MovieApp.Domain.Models;
 using MovieApp.ServiceModels.MovieServiceModels;
 using MovieApp.Services.Interfaces;
@@ -17,21 +16,44 @@ public class MovieService : IMovieService
         _mapper = mapper;
     }
 
-    public void AddMovie(MovieDto entity)
+    public IEnumerable<MovieDto> GetAllMovies()
+    {
+        var movies = _movieRepository.GetAll().Select(_mapper.Map<Movie, MovieDto>);
+        return movies;
+    }
+
+    public IEnumerable<MovieDto> OrderMoviesBy(string orderBy)
+    {
+        var movies = _movieRepository.GetAll().Select(_mapper.Map<Movie, MovieDto>);
+        return orderBy switch
+        {
+            "title_asc" => movies.OrderBy(x => x.Title),
+            "title_desc" => movies.OrderByDescending(x => x.Title),
+            "year_asc" => movies.OrderBy(x => x.Year),
+            "year_desc" => movies.OrderByDescending(x => x.Year),
+            "genre_asc" => movies.OrderBy(x => x.Genre),
+            "genre_desc" => movies.OrderByDescending(x => x.Genre),
+            _ => throw new NotImplementedException($"No ordering by {orderBy} is available!"),
+        };
+    }
+
+    public MovieDto GetById(int id)
+    {
+        var movie = _movieRepository.GetById(id);
+        ArgumentNullException.ThrowIfNull(movie);
+        var movieDto = _mapper.Map<MovieDto>(movie);
+        return movieDto;
+    }
+
+    public void AddMovie(CreateMovieDto entity)
     {
         var movie = _mapper.Map<Movie>(entity);
         _movieRepository.Insert(movie);
     }
 
-    public void DeleteMovie(int id)
-    {
-        var movie = _movieRepository.GetById(id);
-        ArgumentNullException.ThrowIfNull(movie);
-        _movieRepository.Delete(movie);
-    }
-
     public IEnumerable<MovieDto> FilterByGenre(string genre)
     {
+        // kako da se napravi da ne gi zima site za da proveruva dali ima nesto .... tuku direktno da proveri
         var movies = _movieRepository.FilterBy(x => x.Genre.ToString() == genre).Select(_mapper.Map<Movie, MovieDto>).OrderBy(x => x.Title);
         if (!movies.Any())
         {
@@ -50,26 +72,19 @@ public class MovieService : IMovieService
         return movies;
     }
 
-    public IEnumerable<MovieDto> GetAllMovies()
+    public void UpdateMovie(UpdateMovieDto entity)
     {
-        var movies = _movieRepository.GetAll().Select(_mapper.Map<Movie, MovieDto>);
-        return movies;
+        var movie = _movieRepository.GetById(entity.Id);
+        ArgumentNullException.ThrowIfNull(movie);
+        movie = _mapper.Map<Movie>(entity);
+        _movieRepository.Update(movie);
     }
 
-    public MovieDto GetById(int id)
+    public void DeleteMovie(int id)
     {
         var movie = _movieRepository.GetById(id);
         ArgumentNullException.ThrowIfNull(movie);
-        var movieDto = _mapper.Map<MovieDto>(movie);
-        return movieDto;
+        _movieRepository.Delete(movie);
     }
 
-    public void UpdateMovie(int id, UpdateMovieDto entity)
-    {
-        var movie = _movieRepository.GetById(id);
-        var movieDto = _mapper.Map<MovieDto>(movie);
-        var movies = _mapper.Map<UpdateMovieDto>(entity);
-        //var movie = _mapper.Map<Movie>(entity);
-        _movieRepository.Update(movie);
-    }
 }

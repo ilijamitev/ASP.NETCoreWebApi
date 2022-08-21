@@ -4,7 +4,7 @@
 
 namespace MovieApp.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,7 @@ namespace MovieApp.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserMovies",
+                name: "UsersMovies",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -52,15 +52,15 @@ namespace MovieApp.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserMovies", x => new { x.MovieId, x.UserId });
+                    table.PrimaryKey("PK_UsersMovies", x => new { x.MovieId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_UserMovies_Movies_MovieId",
+                        name: "FK_UsersMovies_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserMovies_Users_UserId",
+                        name: "FK_UsersMovies_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -84,30 +84,30 @@ namespace MovieApp.DataAccess.Migrations
                 values: new object[] { 1, 0, "Ilija", "Mitev", "ilija123", "ilija123" });
 
             migrationBuilder.InsertData(
-                table: "UserMovies",
+                table: "UsersMovies",
                 columns: new[] { "MovieId", "UserId", "Id" },
                 values: new object[] { 1, 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "UserMovies",
+                table: "UsersMovies",
                 columns: new[] { "MovieId", "UserId", "Id" },
                 values: new object[] { 2, 1, 2 });
 
             migrationBuilder.InsertData(
-                table: "UserMovies",
+                table: "UsersMovies",
                 columns: new[] { "MovieId", "UserId", "Id" },
                 values: new object[] { 3, 1, 3 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserMovies_UserId",
-                table: "UserMovies",
+                name: "IX_UsersMovies_UserId",
+                table: "UsersMovies",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserMovies");
+                name: "UsersMovies");
 
             migrationBuilder.DropTable(
                 name: "Movies");

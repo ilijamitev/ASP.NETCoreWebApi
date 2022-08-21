@@ -11,8 +11,8 @@ using MovieApp.DataAccess.Data;
 namespace MovieApp.DataAccess.Migrations
 {
     [DbContext(typeof(MovieAppDbContext))]
-    [Migration("20220819142717_Initial")]
-    partial class Initial
+    [Migration("20220821191656_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,7 +139,7 @@ namespace MovieApp.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserMovies");
+                    b.ToTable("UsersMovies");
 
                     b.HasData(
                         new

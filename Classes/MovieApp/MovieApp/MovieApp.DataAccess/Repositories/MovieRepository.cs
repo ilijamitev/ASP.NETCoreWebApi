@@ -12,17 +12,6 @@ public class MovieRepository : IRepository<Movie>
         _context = context;
     }
 
-    public void Delete(Movie entity)
-    {
-        _context.Remove(entity);
-        _context.SaveChanges();
-    }
-
-    public IEnumerable<Movie> FilterBy(Func<Movie, bool> filter)
-    {
-        return _context.Movies.Where(filter);
-    }
-
     public IEnumerable<Movie> GetAll()
     {
         return _context.Movies;
@@ -33,6 +22,11 @@ public class MovieRepository : IRepository<Movie>
         return _context.Movies.SingleOrDefault(x => x.Id == id);
     }
 
+    public IEnumerable<Movie> FilterBy(Func<Movie, bool> filter)
+    {
+        return _context.Movies.Where(filter);
+    }
+
     public void Insert(Movie entity)
     {
         _context.Movies.Add(entity);
@@ -41,7 +35,14 @@ public class MovieRepository : IRepository<Movie>
 
     public void Update(Movie entity)
     {
+        _context.ChangeTracker.Clear();
         _context.Update(entity);
+        _context.SaveChanges();
+    }
+
+    public void Delete(Movie entity)
+    {
+        _context.Remove(entity);
         _context.SaveChanges();
     }
 }

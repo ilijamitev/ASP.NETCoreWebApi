@@ -137,7 +137,7 @@ namespace MovieApp.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserMovies");
+                    b.ToTable("UsersMovies");
 
                     b.HasData(
                         new

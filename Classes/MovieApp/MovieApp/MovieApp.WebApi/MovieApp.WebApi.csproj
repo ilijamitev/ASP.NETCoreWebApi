@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieApp.Helpers\MovieApp.Helpers.csproj" />
+    <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

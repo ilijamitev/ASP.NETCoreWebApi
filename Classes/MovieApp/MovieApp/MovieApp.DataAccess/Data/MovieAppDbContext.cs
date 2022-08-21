@@ -11,7 +11,7 @@ public class MovieAppDbContext : DbContext
     }
     public DbSet<Movie> Movies { get; set; }
     public DbSet<User> Users { get; set; }
-    public DbSet<UserMovie> UserMovies { get; set; }
+    public DbSet<UserMovie> UsersMovies { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string connectionString = builder.Configuration.GetConnectionString("MovieAppDbConnection");
-builder.Services.InjectDbContext(connectionString).InjectRepositories().InjectServices();
+builder.Services.InjectDbContext(connectionString).InjectRepositories().InjectServices().InjectAutoMapper().InjectFluentValidator();
 
 
 

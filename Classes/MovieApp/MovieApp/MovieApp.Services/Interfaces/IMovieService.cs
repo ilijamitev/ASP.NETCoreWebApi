@@ -6,9 +6,10 @@ public interface IMovieService
 {
     MovieDto GetById(int id);
     IEnumerable<MovieDto> GetAllMovies();
+    IEnumerable<MovieDto> OrderMoviesBy(string orderBy);
     IEnumerable<MovieDto> FilterByYear(int year);
     IEnumerable<MovieDto> FilterByGenre(string genre);
-    void AddMovie(MovieDto entity);
-    void UpdateMovie(int id, UpdateMovieDto entity);
+    void AddMovie(CreateMovieDto entity);
+    void UpdateMovie(UpdateMovieDto entity);
     void DeleteMovie(int id);
 }
