@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using MovieApp.Domain.Enums;
 using MovieApp.ServiceModels.MovieServiceModels;
 using MovieApp.Services.Interfaces;
 
@@ -18,7 +19,7 @@ public class MoviesController : ControllerBase
     }
 
     [HttpGet("all")]
-    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] string? orderBy = null)
+    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] string? orderBy = null, [FromQuery] Genre genre = Genre.Comedy)
     {
         try
         {
@@ -73,45 +74,46 @@ public class MoviesController : ControllerBase
         }
     }
 
-    //[HttpPost("add")]
-    //public ActionResult AddMovie(CreateMovieDto movieDto)
-    //{
-    //    try
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            _movieService.AddMovie(movieDto);
-    //            return StatusCode(StatusCodes.Status201Created);
-    //        }
-    //        return BadRequest();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return BadRequest(ex.Message);
-    //    }
-    //}
-
     [HttpPost("add")]
-    public ActionResult AddMovie(string title, string description, string genre, int year)
+    public ActionResult AddMovie(CreateMovieDto movieDto)
     {
         try
         {
-            var movieDto = new CreateMovieDto
+            if (ModelState.IsValid)
             {
-                Description = description,
-                Year = year,
-                Genre = genre,
-                Title = title,
-            };
-            _createMovieValidator.ValidateAndThrow(movieDto);
-            _movieService.AddMovie(movieDto);
-            return StatusCode(StatusCodes.Status201Created);
+                _createMovieValidator.ValidateAndThrow(movieDto);
+                _movieService.AddMovie(movieDto);
+                return StatusCode(StatusCodes.Status201Created);
+            }
+            return BadRequest();
         }
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }
     }
+
+    //[HttpPost("add")]
+    //public ActionResult AddMovie(string title, string description, string genre, int year)
+    //{
+    //    try
+    //    {
+    //        var movieDto = new CreateMovieDto
+    //        {
+    //            Description = description,
+    //            Year = year,
+    //            Genre = genre,
+    //            Title = title,
+    //        };
+    //        _createMovieValidator.ValidateAndThrow(movieDto);
+    //        _movieService.AddMovie(movieDto);
+    //        return StatusCode(StatusCodes.Status201Created);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return BadRequest(ex.Message);
+    //    }
+    //}
 
     [HttpPut("movie/{id}/update")]
     public ActionResult UpdateMovie(int id, string title, string description, int year, string genre)

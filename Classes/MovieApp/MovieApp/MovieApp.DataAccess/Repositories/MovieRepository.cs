@@ -35,8 +35,8 @@ public class MovieRepository : IRepository<Movie>
 
     public void Update(Movie entity)
     {
-        _context.ChangeTracker.Clear();
-        _context.Update(entity);
+        //_context.ChangeTracker.Clear();
+        //_context.Update(entity);  //moze i bez ova
         _context.SaveChanges();
     }
 

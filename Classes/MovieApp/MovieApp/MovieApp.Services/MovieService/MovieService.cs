@@ -33,7 +33,7 @@ public class MovieService : IMovieService
             "year_desc" => movies.OrderByDescending(x => x.Year),
             "genre_asc" => movies.OrderBy(x => x.Genre),
             "genre_desc" => movies.OrderByDescending(x => x.Genre),
-            _ => throw new NotImplementedException($"No ordering by {orderBy} is available!"),
+            _ => throw new NotImplementedException($@"No ordering by ""{orderBy}"" is available!"),
         };
     }
 
@@ -64,19 +64,20 @@ public class MovieService : IMovieService
 
     public IEnumerable<MovieDto> FilterByYear(int year)
     {
+        if (year < 1950 || year > DateTime.Now.Year)
+            throw new Exception($"Please enter valid year (1950-{DateTime.Now.Year})!");
         var movies = _movieRepository.FilterBy(x => x.Year == year).Select(_mapper.Map<Movie, MovieDto>).OrderBy(x => x.Year);
         if (!movies.Any())
-        {
             throw new Exception($"No movie was found from year {year}!");
-        }
         return movies;
     }
 
-    public void UpdateMovie(UpdateMovieDto entity)
+    public void UpdateMovie(UpdateMovieDto model)
     {
-        var movie = _movieRepository.GetById(entity.Id);
+        var movie = _movieRepository.GetById(model.Id);
         ArgumentNullException.ThrowIfNull(movie);
-        movie = _mapper.Map<Movie>(entity);
+        //movie = _mapper.Map<Movie>(model);    // VAKA SE GUBI REFERENCATA
+        _mapper.Map(model, movie);
         _movieRepository.Update(movie);
     }
 
