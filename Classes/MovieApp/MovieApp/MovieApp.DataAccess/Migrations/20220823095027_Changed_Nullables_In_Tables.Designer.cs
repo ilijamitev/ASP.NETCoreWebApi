@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieApp.DataAccess.Data;
 
@@ -10,9 +11,10 @@ using MovieApp.DataAccess.Data;
 namespace MovieApp.DataAccess.Migrations
 {
     [DbContext(typeof(MovieAppDbContext))]
-    partial class MovieAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220823095027_Changed_Nullables_In_Tables")]
+    partial class Changed_Nullables_In_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +92,9 @@ namespace MovieApp.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("FavouriteGenre")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,6 +119,7 @@ namespace MovieApp.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            FavouriteGenre = 0,
                             FirstName = "Ilija",
                             LastName = "Mitev",
                             Password = "ilija123",

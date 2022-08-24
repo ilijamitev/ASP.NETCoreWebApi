@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.WebApi", "MovieApp.WebApi\MovieApp.WebApi.csproj", "{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.WebApi", "MovieApp.WebApi\MovieApp.WebApi.csproj", "{379E678D-FCCA-4349-8EF5-0AB6582FAF6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.DataAccess", "MovieApp.DataAccess\MovieApp.DataAccess.csproj", "{A1F224FA-713A-429D-A881-F0FE4A979F36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.DataAccess", "MovieApp.DataAccess\MovieApp.DataAccess.csproj", "{A1F224FA-713A-429D-A881-F0FE4A979F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.ServiceModels", "MovieApp.ServiceModels\MovieApp.ServiceModels.csproj", "{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.ServiceModels", "MovieApp.ServiceModels\MovieApp.ServiceModels.csproj", "{FB9DB44C-6D9C-46C5-8D43-A552DC636AA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Services", "MovieApp.Services\MovieApp.Services.csproj", "{383E0DB8-E938-44AE-B50A-B0A732C1929A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Services", "MovieApp.Services\MovieApp.Services.csproj", "{383E0DB8-E938-44AE-B50A-B0A732C1929A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Helpers", "MovieApp.Helpers\MovieApp.Helpers.csproj", "{0F434A10-6820-4E02-B4A6-397CC8C6F557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Helpers", "MovieApp.Helpers\MovieApp.Helpers.csproj", "{0F434A10-6820-4E02-B4A6-397CC8C6F557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Domain", "MovieApp.Domain\MovieApp.Domain.csproj", "{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Domain", "MovieApp.Domain\MovieApp.Domain.csproj", "{37F94AA6-6DF2-4AE9-9DB4-438861DD490A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApp.Mappers", "MovieApp.Mappers\MovieApp.Mappers.csproj", "{EBB755E6-3921-4092-9A68-6DE5E79481E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieApp.Mappers", "MovieApp.Mappers\MovieApp.Mappers.csproj", "{EBB755E6-3921-4092-9A68-6DE5E79481E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using MovieApp.Domain.Enums;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.ServiceModels.MovieServiceModels;
 using MovieApp.Services.Interfaces;
 
@@ -11,15 +9,13 @@ namespace MovieApp.WebApi.Controllers;
 public class MoviesController : ControllerBase
 {
     private readonly IMovieService _movieService;
-    private readonly IValidator<CreateMovieDto> _createMovieValidator;
-    public MoviesController(IMovieService movieService, IValidator<CreateMovieDto> createMovieValidator)
+    public MoviesController(IMovieService movieService)
     {
         _movieService = movieService;
-        _createMovieValidator = createMovieValidator;
     }
 
     [HttpGet("all")]
-    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] string? orderBy = null, [FromQuery] Genre genre = Genre.Comedy)
+    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] string? orderBy = null)
     {
         try
         {
@@ -81,7 +77,7 @@ public class MoviesController : ControllerBase
         {
             if (ModelState.IsValid)
             {
-                _createMovieValidator.ValidateAndThrow(movieDto);
+                //_createMovieValidator.ValidateAndThrow(movieDto);          // DALI TUKA ILI VO SERVISITE
                 _movieService.AddMovie(movieDto);
                 return StatusCode(StatusCodes.Status201Created);
             }

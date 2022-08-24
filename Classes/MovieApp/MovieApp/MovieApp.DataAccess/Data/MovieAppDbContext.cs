@@ -16,7 +16,7 @@ public class MovieAppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UserMovie>()
-            .HasKey(x => new { x.MovieId, x.UserId });
+            .HasKey(x => new { x.MovieId, x.UserId }); //setting two primary keys
 
         modelBuilder.Entity<UserMovie>()
             .HasOne(x => x.User)

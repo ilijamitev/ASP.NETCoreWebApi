@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MovieApp.DataAccess.Repositories.Interfaces;
 using MovieApp.Domain.Models;
 using MovieApp.ServiceModels.MovieServiceModels;
@@ -10,10 +11,13 @@ public class MovieService : IMovieService
 {
     private readonly IRepository<Movie> _movieRepository;
     private readonly IMapper _mapper;
-    public MovieService(IRepository<Movie> movieRepository, IMapper mapper)
+    private readonly IValidator<CreateMovieDto> _createMovieValidator;
+
+    public MovieService(IRepository<Movie> movieRepository, IMapper mapper, IValidator<CreateMovieDto> createMovieValidator)
     {
         _movieRepository = movieRepository;
         _mapper = mapper;
+        _createMovieValidator = createMovieValidator;
     }
 
     public IEnumerable<MovieDto> GetAllMovies()
@@ -45,9 +49,10 @@ public class MovieService : IMovieService
         return movieDto;
     }
 
-    public void AddMovie(CreateMovieDto entity)
+    public void AddMovie(CreateMovieDto model)
     {
-        var movie = _mapper.Map<Movie>(entity);
+        _createMovieValidator.ValidateAndThrow(model);
+        var movie = _mapper.Map<Movie>(model);
         _movieRepository.Insert(movie);
     }
 

@@ -26,6 +26,7 @@ public static class DependencyInjectionHelper
         services.AddTransient<IRepository<Movie>, MovieRepository>();
         return services;
     }
+
     public static IServiceCollection InjectServices(this IServiceCollection services)
     {
         services.AddTransient<IMovieService, MovieService>();
@@ -44,8 +45,5 @@ public static class DependencyInjectionHelper
         services.AddScoped<IValidator<CreateMovieDto>, CreateMovieValidator>();
         return services;
     }
-
-
-
 
 }

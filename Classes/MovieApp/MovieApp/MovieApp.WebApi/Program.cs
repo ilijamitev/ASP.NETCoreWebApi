@@ -10,7 +10,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string connectionString = builder.Configuration.GetConnectionString("MovieAppDbConnection");
-builder.Services.InjectDbContext(connectionString).InjectRepositories().InjectServices().InjectAutoMapper().InjectFluentValidator();
+builder.Services.InjectDbContext(connectionString)
+                .InjectRepositories()
+                .InjectServices()
+                .InjectAutoMapper()
+                .InjectFluentValidator();
 
 builder.Services.AddCors(options => options.AddPolicy("myPolicy", policy => policy.AllowAnyOrigin()));
 
