@@ -75,13 +75,8 @@ public class MoviesController : ControllerBase
     {
         try
         {
-            if (ModelState.IsValid)
-            {
-                //_createMovieValidator.ValidateAndThrow(movieDto);          // DALI TUKA ILI VO SERVISITE
-                _movieService.AddMovie(movieDto);
-                return StatusCode(StatusCodes.Status201Created);
-            }
-            return BadRequest();
+            _movieService.AddMovie(movieDto);
+            return StatusCode(StatusCodes.Status201Created);
         }
         catch (Exception ex)
         {
@@ -89,27 +84,6 @@ public class MoviesController : ControllerBase
         }
     }
 
-    //[HttpPost("add")]
-    //public ActionResult AddMovie(string title, string description, string genre, int year)
-    //{
-    //    try
-    //    {
-    //        var movieDto = new CreateMovieDto
-    //        {
-    //            Description = description,
-    //            Year = year,
-    //            Genre = genre,
-    //            Title = title,
-    //        };
-    //        _createMovieValidator.ValidateAndThrow(movieDto);
-    //        _movieService.AddMovie(movieDto);
-    //        return StatusCode(StatusCodes.Status201Created);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return BadRequest(ex.Message);
-    //    }
-    //}
 
     [HttpPut("movie/{id}/update")]
     public ActionResult UpdateMovie(int id, string title, string description, int year, string genre)

@@ -45,9 +45,18 @@ namespace Notes.WebApi.Controllers
         }
 
         // POST api/<NotesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("create-note")]
+        public ActionResult CreateNote([FromBody] CreateNoteDto newNote)
         {
+            try
+            {
+                _noteService.AddNote(newNote);
+                return StatusCode(StatusCodes.Status201Created, "Note created!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, $"ERROR MESSAGE: {ex.Message}");
+            }
         }
 
         // PUT api/<NotesController>/5

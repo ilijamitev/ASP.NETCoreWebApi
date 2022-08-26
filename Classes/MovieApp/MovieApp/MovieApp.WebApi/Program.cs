@@ -2,10 +2,8 @@ using MovieApp.Helpers.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,12 +14,13 @@ builder.Services.InjectDbContext(connectionString)
                 .InjectAutoMapper()
                 .InjectFluentValidator();
 
+// HANDLING CORS RESTRICTIONS
 builder.Services.AddCors(options => options.AddPolicy("myPolicy", policy => policy.AllowAnyOrigin()));
 
 
 var app = builder.Build();
-app.UseCors("myPolicy");
-// Configure the HTTP request pipeline.
+app.UseCors("myPolicy");  // using cors policy created on l.18
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

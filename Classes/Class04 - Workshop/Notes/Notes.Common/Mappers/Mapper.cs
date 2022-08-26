@@ -1,4 +1,5 @@
 ﻿using Notes.DataModels.Models;
+using Notes.ServiceModels.Enums;
 using Notes.ServiceModels.NotesModels;
 
 namespace Notes.Common.Mappers

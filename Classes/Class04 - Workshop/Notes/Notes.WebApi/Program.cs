@@ -10,7 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-builder.Services.ServicesDependencies().RegisterDataDependencies();
+string connectionString = builder.Configuration.GetConnectionString("NotesAppConnectionString");
+builder.Services.ServicesDependencies().RegisterDataDependencies().RegisterDbContext(connectionString);
 
 var app = builder.Build();
 
