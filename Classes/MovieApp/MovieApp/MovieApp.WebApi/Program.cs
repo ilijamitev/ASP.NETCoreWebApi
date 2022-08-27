@@ -15,7 +15,7 @@ builder.Services.InjectDbContext(connectionString)
                 .InjectFluentValidator();
 
 // HANDLING CORS RESTRICTIONS
-builder.Services.AddCors(options => options.AddPolicy("myPolicy", policy => policy.AllowAnyOrigin()));
+builder.Services.AddCors(options => options.AddPolicy("myPolicy", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
 
 var app = builder.Build();
