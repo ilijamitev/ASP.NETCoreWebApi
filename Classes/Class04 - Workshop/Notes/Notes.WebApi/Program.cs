@@ -1,3 +1,4 @@
+using Notes.Common.Models;
 using Notes.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +11,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
-string connectionString = builder.Configuration.GetConnectionString("NotesAppConnectionString");
-builder.Services.ServicesDependencies().RegisterDataDependencies().RegisterDbContext(connectionString);
+
+// Configuring MyAppSettings section
+var appConfig = builder.Configuration.GetSection("MyAppSettings");
+
+// Using MyAppSettings 
+var appSettings = appConfig.Get<MyAppSettings>();
+
+
+builder.Services
+    .ServicesDependencies()
+    .RegisterDataDependencies()
+    .RegisterDbContext(appSettings.NotesAppDbConnection);
 
 var app = builder.Build();
 

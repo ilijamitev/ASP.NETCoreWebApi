@@ -17,9 +17,10 @@ public class UserRepository : IRepository<User>
 
     //public IQueryable<User> Query { get { return _users; } }
 
-    public void Delete(User entity)
+    public void Delete(int id)
     {
-        _context.Users.Remove(entity);
+        var user = _context.Users.SingleOrDefault(x => x.Id == id);
+        _context.Users.Remove(user);
         _context.SaveChanges();
     }
 

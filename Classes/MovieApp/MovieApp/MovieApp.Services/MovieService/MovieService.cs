@@ -3,6 +3,7 @@ using FluentValidation;
 using MovieApp.DataAccess.Repositories.Interfaces;
 using MovieApp.Domain.Models;
 using MovieApp.ServiceModels.MovieServiceModels;
+using MovieApp.ServiceModels.MovieServiceModels.Enums;
 using MovieApp.Services.Interfaces;
 
 namespace MovieApp.Services.MovieService;
@@ -26,27 +27,27 @@ public class MovieService : IMovieService
         return movies;
     }
 
-    public IEnumerable<MovieDto> OrderMoviesBy(string orderBy)
-    {
-        var movies = _movieRepository.GetAll().Select(_mapper.Map<Movie, MovieDto>);
-        return orderBy switch
-        {
-            "title_asc" => movies.OrderBy(x => x.Title),
-            "title_desc" => movies.OrderByDescending(x => x.Title),
-            "year_asc" => movies.OrderBy(x => x.Year),
-            "year_desc" => movies.OrderByDescending(x => x.Year),
-            "genre_asc" => movies.OrderBy(x => x.Genre),
-            "genre_desc" => movies.OrderByDescending(x => x.Genre),
-            _ => throw new NotImplementedException($@"No ordering by ""{orderBy}"" is available!"),
-        };
-    }
-
     public MovieDto GetById(int id)
     {
         var movie = _movieRepository.GetById(id);
         ArgumentNullException.ThrowIfNull(movie);
         var movieDto = _mapper.Map<MovieDto>(movie);
         return movieDto;
+    }
+
+    public IEnumerable<MovieDto> OrderMoviesBy(MovieOrderBy orderBy)
+    {
+        var movies = _movieRepository.GetAll().Select(_mapper.Map<Movie, MovieDto>);
+        return orderBy switch
+        {
+            MovieOrderBy.title_asc => movies.OrderBy(x => x.Title),
+            MovieOrderBy.title_desc => movies.OrderByDescending(x => x.Title),
+            MovieOrderBy.year_asc => movies.OrderBy(x => x.Year),
+            MovieOrderBy.year_desc => movies.OrderByDescending(x => x.Year),
+            MovieOrderBy.genre_asc => movies.OrderBy(x => x.Genre),
+            MovieOrderBy.genre_desc => movies.OrderByDescending(x => x.Genre),
+            _ => throw new NotImplementedException($@"No ordering by ""{orderBy}"" is available!"),
+        };
     }
 
     public void AddMovie(CreateMovieDto model)
@@ -90,7 +91,7 @@ public class MovieService : IMovieService
     {
         var movie = _movieRepository.GetById(id);
         ArgumentNullException.ThrowIfNull(movie);
-        _movieRepository.Delete(movie);
+        _movieRepository.Delete(id);
     }
 
 }

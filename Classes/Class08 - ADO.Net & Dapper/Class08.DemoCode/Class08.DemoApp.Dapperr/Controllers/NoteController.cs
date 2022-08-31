@@ -13,11 +13,26 @@ namespace Class08.DemoCode.Dapperr.Controllers
         {
             _noteService = new NoteService();
         }
-        [HttpGet]
+
+        [HttpGet("all")]
         public ActionResult<IEnumerable<Note>> GetAllNotes()
         {
             var notes = _noteService.GetAll();
             return Ok(notes);
+        }
+
+        [HttpGet("getById")]
+        public ActionResult<IEnumerable<Note>> GetById()
+        {
+            var note = _noteService.GetByUserIdAndNoteId(1, 3);
+            return Ok(note);
+        }
+
+        [HttpPost("add")]
+        public ActionResult<IEnumerable<Note>> AddNote()
+        {
+            _noteService.Add("New Note", "ORANGE", 2, 3);
+            return Ok();
         }
     }
 }

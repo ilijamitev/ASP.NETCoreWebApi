@@ -15,6 +15,7 @@ public class MovieAppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // DA PROBAM BEZ OVA
         modelBuilder.Entity<UserMovie>()
             .HasKey(x => new { x.MovieId, x.UserId }); //setting two primary keys
 

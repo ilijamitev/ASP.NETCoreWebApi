@@ -1,12 +1,14 @@
 ﻿using MovieApp.DataAccess.Data;
 using MovieApp.DataAccess.Repositories.Interfaces;
 using MovieApp.Domain.Models;
+using System.Diagnostics;
 
 namespace MovieApp.DataAccess.Repositories;
 
 public class MovieRepository : IRepository<Movie>
 {
     private readonly MovieAppDbContext _context;
+
     public MovieRepository(MovieAppDbContext context)
     {
         _context = context;
@@ -40,9 +42,10 @@ public class MovieRepository : IRepository<Movie>
         _context.SaveChanges();
     }
 
-    public void Delete(Movie entity)
+    public void Delete(int id)
     {
-        _context.Remove(entity);
+        var movie = _context.Movies.SingleOrDefault(x => x.Id == id);
+        _context.Remove(movie);
         _context.SaveChanges();
     }
 }

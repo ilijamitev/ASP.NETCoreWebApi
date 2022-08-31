@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieApp.ServiceModels.MovieServiceModels;
+using MovieApp.ServiceModels.MovieServiceModels.Enums;
 using MovieApp.Services.Interfaces;
 
 namespace MovieApp.WebApi.Controllers;
@@ -15,13 +16,13 @@ public class MoviesController : ControllerBase
     }
 
     [HttpGet("all")]
-    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] string? orderBy = null)
+    public ActionResult<IEnumerable<MovieDto>> GetAllMovies([FromQuery] MovieOrderBy? orderBy = null)
     {
         try
         {
             if (orderBy != null)
             {
-                return Ok(_movieService.OrderMoviesBy(orderBy));
+                return Ok(_movieService.OrderMoviesBy((MovieOrderBy)orderBy));
             }
             return Ok(_movieService.GetAllMovies());
         }
@@ -113,7 +114,7 @@ public class MoviesController : ControllerBase
         try
         {
             _movieService.DeleteMovie(id);
-            return StatusCode(StatusCodes.Status200OK);
+            return StatusCode(StatusCodes.Status200OK, "Successfully deleted movie!");
         }
         catch (Exception ex)
         {

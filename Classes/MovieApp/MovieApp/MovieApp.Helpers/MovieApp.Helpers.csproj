@@ -13,7 +13,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieApp.DataAccess\MovieApp.DataAccess.csproj" />
+    <ProjectReference Include="..\MovieApp.Domain\MovieApp.Domain.csproj" />
     <ProjectReference Include="..\MovieApp.Mappers\MovieApp.Mappers.csproj" />
+    <ProjectReference Include="..\MovieApp.ServiceModels\MovieApp.ServiceModels.csproj" />
     <ProjectReference Include="..\MovieApp.Services\MovieApp.Services.csproj" />
   </ItemGroup>
 

@@ -23,7 +23,8 @@ public static class DependencyInjectionHelper
     public static IServiceCollection InjectRepositories(this IServiceCollection services)
     {
         services.AddTransient<IRepository<User>, UserRepository>();
-        services.AddTransient<IRepository<Movie>, MovieRepository>();
+        //services.AddTransient<IRepository<Movie>, MovieRepository>();
+        services.AddTransient<IRepository<Movie>, MovieDapperRepository>();
         return services;
     }
 
