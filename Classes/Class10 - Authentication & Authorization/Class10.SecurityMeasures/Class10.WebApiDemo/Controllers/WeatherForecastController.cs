@@ -20,7 +20,7 @@ namespace Class10.WebApiDemo.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             var request = User; // here we can find all clais from the token

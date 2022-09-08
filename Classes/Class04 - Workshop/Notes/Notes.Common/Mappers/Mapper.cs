@@ -14,7 +14,6 @@ namespace Notes.Common.Mappers
                 Id = note.Id,
                 Tag = (TagType)note.Tag,
                 Text = note.Text,
-                UserId = note.UserId,
             };
 
 

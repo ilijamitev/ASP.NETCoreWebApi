@@ -12,7 +12,7 @@ namespace Notes.DataAccess.Repositories
 
         public NoteAdoRepository(IOptions<MyAppSettings> settings)
         {
-            _connectionString = settings.Value.NotesAppDbConnection;
+            _connectionString = settings.Value.NotesAppConnectionString;
         }
 
         public int Delete(Note entity)

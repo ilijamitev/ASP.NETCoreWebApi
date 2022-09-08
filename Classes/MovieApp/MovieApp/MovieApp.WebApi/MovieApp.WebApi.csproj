@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieApp.DependencyInjection\MovieApp.DependencyInjection.csproj" />
     <ProjectReference Include="..\MovieApp.Helpers\MovieApp.Helpers.csproj" />
   </ItemGroup>
 

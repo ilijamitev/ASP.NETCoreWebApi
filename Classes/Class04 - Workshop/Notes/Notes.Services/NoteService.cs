@@ -18,14 +18,12 @@ namespace Notes.Services
             _userRepository = userRepository;
         }
 
-        public void AddNote(CreateNoteDto createNote)
+        public void AddNote(CreateNoteDto createNote, int userId)
         {
-            var user = _userRepository.GetById(createNote.UserId);
-            ArgumentNullException.ThrowIfNull(user, "User not found");
             var note = new Note
             {
                 Text = createNote.Text,
-                UserId = createNote.UserId,
+                UserId = userId,
                 Color = createNote.Color,
                 Tag = createNote.Tag,
             };
@@ -41,7 +39,7 @@ namespace Notes.Services
 
         public NoteDto GetNote(int id, int userId)
         {
-            var note = _noteRepository.FilterBy(x => x.Id == id && x.UserId == id).FirstOrDefault();
+            var note = _noteRepository.FilterBy(x => x.Id == id && x.UserId == userId).FirstOrDefault();
             ArgumentNullException.ThrowIfNull(note);
             return note.MapToNoteDto();
         }

@@ -6,7 +6,7 @@ namespace Notes.Services.Interfaces
     {
         IEnumerable<NoteDto> GetUserNotes(int userId);
         NoteDto GetNote(int id, int userId);
-        void AddNote(CreateNoteDto note);
+        void AddNote(CreateNoteDto note, int userId);
         void DeleteNote(int id, int userId);
     }
 }

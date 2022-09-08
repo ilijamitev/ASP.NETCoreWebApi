@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Notes.ServiceModels.NotesModels;
 using Notes.Services.Interfaces;
+using System.Security.Claims;
 
 namespace Notes.WebApi.Controllers
 {
     [Route("api/v1/[controller]")]
-    [ApiController]
-    public class NotesController : ControllerBase
+    public class NotesController : BaseController
     {
         private readonly INoteService _noteService;
         public NotesController(INoteService noteService)
@@ -14,12 +15,13 @@ namespace Notes.WebApi.Controllers
             _noteService = noteService;
         }
 
-        [HttpGet("user/{userId}")]
-        public ActionResult<IEnumerable<NoteDto>> GetNotes(int userId)
+        [HttpGet("user")]
+        public ActionResult<IEnumerable<NoteDto>> GetNotes()
         {
             try
             {
-                var notes = _noteService.GetUserNotes(userId);
+                User.FindFirst(ClaimTypes.NameIdentifier);
+                var notes = _noteService.GetUserNotes(UserId);
                 return Ok(notes);
             }
             catch (Exception ex)
@@ -30,12 +32,12 @@ namespace Notes.WebApi.Controllers
         }
 
         // GET api/<NotesController>/5
-        [HttpGet("{id}/user/{userId}")]
-        public ActionResult<NoteDto> GetNoteById(int id, int userId)
+        [HttpGet("{id}")]
+        public ActionResult<NoteDto> GetNoteById(int id)
         {
             try
             {
-                var note = _noteService.GetNote(id, userId);
+                var note = _noteService.GetNote(id, UserId);
                 return StatusCode(200, note);
             }
             catch (Exception ex)
@@ -50,7 +52,7 @@ namespace Notes.WebApi.Controllers
         {
             try
             {
-                _noteService.AddNote(newNote);
+                _noteService.AddNote(newNote, UserId);
                 return StatusCode(StatusCodes.Status201Created, "Note created!");
             }
             catch (Exception ex)

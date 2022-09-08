@@ -11,9 +11,8 @@ using MovieApp.ServiceModels.MovieServiceModels;
 using MovieApp.Services.Interfaces;
 using MovieApp.Services.MovieService;
 
-namespace MovieApp.Helpers.DependencyInjection;
-
-public static class DependencyInjectionHelper
+namespace MovieApp.DependencyInjection.DependencyInjection;
+public static class DependencyInjectionHandler
 {
     public static IServiceCollection InjectDbContext(this IServiceCollection services, string connectionString)
     {
@@ -46,5 +45,6 @@ public static class DependencyInjectionHelper
         services.AddScoped<IValidator<CreateMovieDto>, CreateMovieValidator>();
         return services;
     }
+
 
 }

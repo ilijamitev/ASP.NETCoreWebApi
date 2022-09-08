@@ -9,6 +9,7 @@ namespace Notes.DependencyInjection
         public static IServiceCollection ServicesDependencies(this IServiceCollection services)
         {
             services.AddTransient<INoteService, NoteService>();
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
     }
