@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Notes.ServiceModels.UserModels;
 using Notes.Services.Interfaces;
+using Serilog;
 
 namespace Notes.WebApi.Controllers
 {
@@ -38,10 +39,12 @@ namespace Notes.WebApi.Controllers
             try
             {
                 var user = _userService.Login(loginModel);
+                Log.Information($"Successfully logged in. User {loginModel.Username}");
                 return Ok(user);
             }
             catch (Exception ex)
             {
+                Log.Error(ex.Message);
                 return BadRequest(ex.Message);
                 throw;
             }

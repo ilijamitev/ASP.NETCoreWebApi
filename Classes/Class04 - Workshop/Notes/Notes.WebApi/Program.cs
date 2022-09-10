@@ -3,10 +3,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Notes.Common.Models;
 using Notes.DependencyInjection;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+Log.Information("Hello Notes Api :)");
 // Add services to the container.
 builder.Services.AddAuthorization();
 
@@ -15,6 +16,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+var loggerConfiq = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+builder.Host.UseSerilog((context, confiq) =>
+{
+    confiq.ReadFrom.Configuration(loggerConfiq);
+});
 
 // Program.cs DA BIDE POCISTO I CITKO
 // VO POSEBEN SERVIS I SAMO DA SE INJEKTIRAAT => PRIMER VO DependencyInjection => SwaggerConfiguration.cs
