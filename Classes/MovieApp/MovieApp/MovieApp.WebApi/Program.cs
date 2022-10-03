@@ -27,7 +27,7 @@ builder.Services.AddCors(options => options.AddPolicy("myPolicy", policy => poli
 
 
 var app = builder.Build();
-app.UseCors("myPolicy");  // using cors policy created on l.18
+app.UseCors("myPolicy");  // using cors policy created on l.26
 
 if (app.Environment.IsDevelopment())
 {
